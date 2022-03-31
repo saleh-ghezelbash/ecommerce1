@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet", "Skinet.csproj", "{C0447E0A-69B8-4E38-8823-7EE634DC5EAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet", ".\Skinet\Skinet.csproj", "{C0447E0A-69B8-4E38-8823-7EE634DC5EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet.Core", "..\Skinet.Core\Skinet.Core.csproj", "{7C15B5BA-2C2D-4DBD-99F9-3A6772AE0C4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet.Core", ".\Skinet.Core\Skinet.Core.csproj", "{7C15B5BA-2C2D-4DBD-99F9-3A6772AE0C4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet.Infrastructure", "..\Skinet.Infrastructure\Skinet.Infrastructure.csproj", "{903C2FB9-6890-4664-A961-2A4B8CA1EBAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skinet.Infrastructure", ".\Skinet.Infrastructure\Skinet.Infrastructure.csproj", "{903C2FB9-6890-4664-A961-2A4B8CA1EBAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
