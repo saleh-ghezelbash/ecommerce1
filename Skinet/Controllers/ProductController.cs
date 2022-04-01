@@ -12,6 +12,7 @@ using Skinet.Core.Interfaces;
 using Skinet.Core.Specification;
 using Skinet.Dtos;
 using Skinet.Errors;
+using Skinet.Helpers;
 
 namespace Skinet.Controllers
 {
@@ -34,10 +35,16 @@ namespace Skinet.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturn>>> GetProducts()
+        public async Task<ActionResult<Pagination<ProductToReturn>>> GetProducts(
+           [FromQuery] ProductSpecParams productParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
+            var countSpec = new ProductsWithFiltersForCountSpecification(productParams);
+
+            var totalItems = await _productRepo.CountAsync(countSpec);
             var products = await _productRepo.ListAsync(spec);
+            var data = _mapper.Map<IReadOnlyList<ProductToReturn>>(products);
+
             //return products.Select(product => new ProductToReturn
             //{
             //    Id = product.Id,
@@ -48,8 +55,10 @@ namespace Skinet.Controllers
             //    ProductBrand = product.ProductBrand.Name,
             //    ProductType = product.ProductType.Name
             //}).ToList();
-            return Ok(_mapper.Map<IReadOnlyList<Product>, 
-                IReadOnlyList<ProductToReturn>>(products));
+            
+
+            return Ok(new Pagination<ProductToReturn>(productParams.PageIndex,
+                productParams.PageSize, totalItems, data));
         }
 
         [HttpGet("{id}")]
