@@ -20,6 +20,7 @@ using Skinet.Extensions;
 using Skinet.Helpers;
 using Skinet.Infrastructure.Data;
 using Skinet.Middleware;
+using StackExchange.Redis;
 
 namespace Skinet
 {
@@ -37,6 +38,12 @@ namespace Skinet
             services.AddAutoMapper(typeof(MappingProfiels));
             services.AddControllers();
             services.AddApplicationServices();
+
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var config = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(config);
+            });
 
             //services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("SqliteConnection")));
             services.AddDbContext<StoreContext>(options =>

@@ -17,7 +17,7 @@ namespace Skinet.Extensions
           //  services.AddScoped<IPaymentService, PaymentService>();
           //  services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepository, ProductRepository>();
-          //  services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.Configure<ApiBehaviorOptions>(options =>
             {
