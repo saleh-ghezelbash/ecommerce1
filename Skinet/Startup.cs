@@ -41,8 +41,10 @@ namespace Skinet
 
             services.AddSingleton<IConnectionMultiplexer>(c =>
             {
-                var config = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"), true);
-                return ConnectionMultiplexer.Connect(config);
+                //var config = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"), true);
+                //return ConnectionMultiplexer.Connect(config);
+                //return ConnectionMultiplexer.Connect("localhost");
+                return ConnectionMultiplexer.Connect(_configuration.GetValue<string>("Redis"));
             });
 
             //services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("SqliteConnection")));
